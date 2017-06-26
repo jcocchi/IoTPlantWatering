@@ -1,0 +1,76 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "clusterLocation": {
+      "value": "westus"
+    },
+    "clusterName": {
+      "value": "plantfabric"
+    },
+    "adminUserName": {
+      "reference": {
+      "keyVault": {
+        "id": "/subscriptions/19f8b8eb-1fd0-4b1a-a7de-d9017c6c144e/resourceGroups/westus-plants/providers/Microsoft.KeyVault/vaults/plantsvault"
+      }, 
+      "secretName": "ServerAdminName" 
+       } 
+    },
+    "adminPassword": {
+      "reference": {
+      "keyVault": {
+        "id": "/subscriptions/19f8b8eb-1fd0-4b1a-a7de-d9017c6c144e/resourceGroups/westus-plants/providers/Microsoft.KeyVault/vaults/plantsvault"
+      }, 
+      "secretName": "ServerAdminPassword" 
+       } 
+    },
+    "vmImagePublisher": {
+      "value": "MicrosoftWindowsServer"
+    },
+    "vmImageOffer": {
+      "value": "WindowsServer"
+    },
+    "vmImageSku": {
+      "value": "2012-R2-Datacenter"
+    },
+    "vmImageVersion": {
+      "value": "latest"
+    },
+    "loadBalancedAppPort1": {
+      "value": 80
+    },
+    "vmNodeType0Size": {
+      "value": "Standard_D1_v2"
+     },
+    "loadBalancedAppPort2": {
+      "value": 8081
+    },
+    "certificateStorevalue": {
+      "value": "My"
+    },
+    "certificateThumbprint": {
+      "value": "5D116AACC55A72944255212301ADC78450A488CD"
+    },
+    "sourceVaultvalue": {
+      "value": "/subscriptions/19f8b8eb-1fd0-4b1a-a7de-d9017c6c144e/resourceGroups/westus-plants/providers/Microsoft.KeyVault/vaults/plantsvault"
+    },
+    "certificateUrlvalue": {
+      "value": "https://plantsvault.vault.azure.net:443/secrets/plantcert/a7f5609b4932448bb7a37eb0f1b626fc"
+    },
+    "clusterProtectionLevel": {
+      "value": "EncryptAndSign"
+    },
+    "storageAccountType": {
+      "value": "Standard_LRS"
+    },
+    "supportLogStorageAccountType": {
+      "value": "Standard_LRS"
+    },
+    "applicationDiagnosticsStorageAccountType": {
+      "value": "Standard_LRS"
+    },
+    "nt0InstanceCount": {
+      "value": 5
+    }
+  }
+}
