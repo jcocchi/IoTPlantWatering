@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/jcocchi/IoTPlantWatering#readme",
   "dependencies": {
+    "assert": "^1.4.1",
     "azure-event-hubs": "0.0.8",
-    "dotenv": "^4.0.0"
+    "dotenv": "^4.0.0",
+    "mongodb": "^2.2.29"
   }
 }
