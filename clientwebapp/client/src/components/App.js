@@ -1,13 +1,24 @@
 import React, { Component } from 'react'
-import DeviceReadingList from './components/deviceReadingList'
-import './css/App.css'
+import DeviceReadingList from './deviceReadingList'
+import search from '../search'
+import '../css/App.css'
 
 class App extends Component {
   constructor (props) {
     super(props)
+
     this.state = {
-      deviceReadings: [{temp: 75, hum: 23}, {temp: 76, hum: 28}, {temp: 74, hum: 20}]
+      deviceReadings: [],
+      numRecords: 10
     }
+  }
+
+  componentDidMount () {
+    search(this.state.numRecords, (response) => {
+      console.log(`Component mounted ${response.length} responses`)
+
+      this.setState({deviceReadings: response})
+    })
   }
 
   render () {

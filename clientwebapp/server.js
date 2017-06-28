@@ -14,7 +14,7 @@ app.get('/api/deviceReadings', (req, res) => {
     res.sendStatus(400)
   }
 
-  MongoClient.connect(MongoConnString, function (err, db) {
+  MongoClient.connect(MongoConnString, (err, db) => {
     if (err) {
       res.sendStatus(500)
     }
@@ -41,7 +41,6 @@ function getReadings (cursor) {
   let getReadingsPromise = new Promise((resolve, reject) => {
     let readings = []
     cursor.forEach(r => {
-      console.log(r)
       readings.push(r)
     }, () => {
       resolve(readings)
