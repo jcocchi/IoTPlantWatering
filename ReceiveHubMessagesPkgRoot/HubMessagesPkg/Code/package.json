@@ -1,0 +1,25 @@
+{
+  "name": "receivehubmessages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcocchi/IoTPlantWatering.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jcocchi/IoTPlantWatering/issues"
+  },
+  "homepage": "https://github.com/jcocchi/IoTPlantWatering#readme",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "azure-event-hubs": "0.0.8",
+    "dotenv": "^4.0.0",
+    "mongodb": "^2.2.29"
+  }
+}

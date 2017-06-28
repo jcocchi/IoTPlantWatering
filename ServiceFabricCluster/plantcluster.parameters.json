@@ -31,7 +31,7 @@
       "value": "WindowsServer"
     },
     "vmImageSku": {
-      "value": "2012-R2-Datacenter"
+      "value": "2016-Datacenter-with-Containers"
     },
     "vmImageVersion": {
       "value": "latest"
@@ -49,13 +49,13 @@
       "value": "My"
     },
     "certificateThumbprint": {
-      "value": "5D116AACC55A72944255212301ADC78450A488CD"
+      "value": "65EE0C0A44E7B447F6692F62DE8E49783AEA2900"
     },
     "sourceVaultvalue": {
       "value": "/subscriptions/19f8b8eb-1fd0-4b1a-a7de-d9017c6c144e/resourceGroups/westus-plants/providers/Microsoft.KeyVault/vaults/plantsvault"
     },
     "certificateUrlvalue": {
-      "value": "https://plantsvault.vault.azure.net:443/secrets/plantcert/a7f5609b4932448bb7a37eb0f1b626fc"
+      "value": "https://plantsvault.vault.azure.net:443/secrets/fabriccert/21312a175b854f42ac4a6e3103cb04f6"
     },
     "clusterProtectionLevel": {
       "value": "EncryptAndSign"
