@@ -4,30 +4,20 @@
 When deploying to a Service Fabric Cluster, the recommended installation of the cluster is via a secure mode requiring server certificates. This required the set up of the following additional components:
 
 - _Self-Signed Server Certificates_ - self signed certificates are not recommended for production level deployment, but for testing purposes they are usuable. Server certificates are used to secure the communication between Azure and the cluster and between the clustered servers themselves. For this project the certificates were created using PowerShell.
- - _Azure Key Vault_ - In order to deploy the cluster with the certificates, they needed to be stored in a location accessible to the Azure subscription holder. Certificates were added to the Azure Key Vault using PowerShell.
- - _Client Access via Certificates or Azure Active Directory_ - For access to the cluster for application deployment and management, either client certificates or Azure AD access is suggested. (In Progress)
+- _Azure Key Vault_ - In order to deploy the cluster with the certificates, they needed to be stored in a location accessible to the Azure subscription holder. Certificates were added to the Azure Key Vault using PowerShell.
+- _Client Access via Certificates or Azure Active Directory_ - For access to the cluster for application deployment and management, either client certificates or Azure AD access is suggested. (In Progress)
 
-Note: As the Self-Signed Client Certificate component has not yet been completed, unsecured Service Fabric Clusters have been using for testing so far. 
+Note: As the Self-Signed Client Certificate component has not yet been completed, unsecured Service Fabric Clusters have been using for testing so far.
 
 ## Service Fabric Deployment Templates ##
 For the secure cluster deployment, we used ARM templates that can be deployed via Azure CLI or PowerShell. Creating unsecure clusters can be done quickly using the Azure Portal, so we do not have an ARM template created for that. 
 
 ## Option 1 - Node API and Node Web App as Guest Executables on Service Fabric ##
 
-Step 1 - Create Application and Service Manifest files
-
-This can be done manually or via Visual Studio with the Azure SDK installed. As Node.js isn't included on the cluster nodes by default, it needs to be included in the package along with the application. (In progress)
-
-Step 2 - Connect to the Cluster
-
-For an unsecure cluster, this is easily accomplished via PowerShell from a subscription holder with access to the cluster deployment. 
-For a secure cluster, the access requires a registered certificate or the cluster needs to be registered as an Azure AD application (not yet completed)
-
-Step 3 - Upload and Register Application with Fabric Service
-
-This copies the application to the fabric storage area for applcation and registers it so it's deployable, via PowerShell or Azure CLI. PowerShell code available.
-
-Step 4 - Deploy Application Service Instance on Desired Number of Nodes 
+1. Create Application and Service Manifest files - This can be done manually or via Visual Studio with the Azure SDK installed. As Node.js isn't included on the cluster nodes by default, it needs to be included in the package along with the application. _In progress_
+1. Connect to the Cluster - For an unsecure cluster, this is easily accomplished via PowerShell from a subscription holder with access to the cluster deployment. For a secure cluster, the access requires a registered certificate or the cluster needs to be registered as an Azure AD application (not yet completed)
+1. Upload and Register Application with Fabric Service - this copies the application to the fabric storage area for applcation and registers it so it's deployable, via PowerShell or Azure CLI. PowerShell code available.
+1. Deploy Application Service Instance on Desired Number of Nodes
 
 This can be completed via PowerShell or Azure CLI.  PowerShell code available.
 
