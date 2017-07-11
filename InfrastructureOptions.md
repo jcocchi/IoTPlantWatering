@@ -26,40 +26,31 @@ Roadbumps: Including Node.js binaries as part of the application package has bee
 ## Option 2 - Node API and Node Web App as Containers on Service Fabric Cluster ##
 This opinion potential eliminates the need to include the Node.js and related dependancies within the application package. Instead the Application and Service manifest files would deploy a Guest Container with the application already installed.
 
-Step 1 - Create a Windows Container with Node.js installed
-While there is plenty of documentation on how to do this with a Linux container, doing so with Windows container is more challenging due to the recommended installation process for Node.js is the MSI file. A PowerShell script was located that does a hybrid, silent installation of Node.js.  I updated the script to install the lastest version of Node.js. (Appeared successful)
-
-Step 2 - Create a docker file to install the Client Web Application 
-
-Step 3 - Create application and service manifests to deploy the container. 
+1. Create a Windows Container with Node.js installed - While there is plenty of documentation on how to do this with a Linux container, doing so with Windows container is more challenging due to the recommended installation process for Node.js is the MSI file. A PowerShell script was located that does a hybrid, silent installation of Node.js.  I updated the script to install the lastest version of Node.js. (Appeared successful)
+1. Create a docker file to install the Client Web Application.
+1. Create application and service manifests to deploy the container.
 
 Roadblocks/ToDos: Ran into errors related to networking and port mapping from the container through service fabric. May need to experiment more with endpoints and proxy features for fabric clusters. Also unsure if the docker file to install the client web application is correct at this point, need to test that elsewhere. 
 
 ## Option 3 - Node API and Node Web App as Containers on Azure Container Service ##
 In order to filter out errors related to service or application manifest configuration, we considered deploying the containers directly to Azure Container Service.
 
-Step 1 - Create a Container Service on Azure
-
-Azure supports three orchestrator options for containers on Azure (Docker Swarm, DC/OS and Kubernetes.) Only Kubernetes supports Windows Containers at this time. [Walkthrough Here.](https://docs.microsoft.com/en-us/azure/container-service/container-service-kubernetes-windows-walkthrough)
-
-Step 2 - Deploy Container using Kubectl command line
+1. Create a Container Service on Azure - Azure supports three orchestrator options for containers on Azure (Docker Swarm, DC/OS and Kubernetes.) Only Kubernetes supports Windows Containers at this time. [Walkthrough Here.](https://docs.microsoft.com/en-us/azure/container-service/container-service-kubernetes-windows-walkthrough)
+1. Deploy Container using Kubectl command line
 
 Roadbocks/ToDos: Containers were deployed to the service, however reported failure shortly after deployment. This was tested with both the container with the application installed and the container with just the Node.js installed.  Not sure if the script used to install Node.js was correct as it was dated, so may need to look at alternative ways to create that container or confirm that Node is installed correctly.
 
+References: [Running Windows Containers on Azure Service Fabric](https://loekd.wordpress.com/2017/02/08/running-windows-containers-on-azure-service-fabric/)
+
 ## Option 4 - Node API and Node Web App as Native Applications on Windows Server 2016 VM ##
-Building a VM to support this application provides us the greatest opportunity to troubleshoot the redeployment of this application, however it is not the most cost effective solution. 
 
-Step 1 - Build Windows Server 2016 as an Azure VM
+Building a VM to support this application provides us the greatest opportunity to troubleshoot the redeployment of this application, however it is not the most cost effective solution.
 
-Step 2 - Install Node.js
+1. Build Windows Server 2016 as an Azure VM
+1. Install Node.js - Installed using the downloaded MSI installer.
+1. Install Client Web Application
 
-Installed using the downloaded MSI installer.
+## Option 5 - Node API and Node Web App on Azure App Services ##
 
-Step 3 - Install Client Web Application
-
-## Option 5 - Node API and Node Web App on Azure App Services
 Use Azure App Service to host each application on PaaS.
-
-
-    
 
