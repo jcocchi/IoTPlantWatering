@@ -3,9 +3,9 @@
 ## Security Goals for Service Fabric ##
 When deploying to a Service Fabric Cluster, the recommended installation of the cluster is via a secure mode requiring server certificates. This required the set up of the following additional components:
 
-    *Self-Signed Server Certificates* - self signed certificates are not recommended for production level deployment, but for testing purposes they are usuable. Server certificates are used to secure the communication between Azure and the cluster and between the clustered servers themselves. For this project the certificates were created using PowerShell.
-    *Azure Key Vault* - In order to deploy the cluster with the certificates, they needed to be stored in a location accessible to the Azure subscription holder. Certificates were added to the Azure Key Vault using PowerShell.
-    *Client Access via Certificates or Azure Active Directory* - For access to the cluster for application deployment and management, either client certificates or Azure AD access is suggested. (In Progress)
+    * _Self-Signed Server Certificates_ - self signed certificates are not recommended for production level deployment, but for testing purposes they are usuable. Server certificates are used to secure the communication between Azure and the cluster and between the clustered servers themselves. For this project the certificates were created using PowerShell.
+    * _Azure Key Vault_ - In order to deploy the cluster with the certificates, they needed to be stored in a location accessible to the Azure subscription holder. Certificates were added to the Azure Key Vault using PowerShell.
+    * _Client Access via Certificates or Azure Active Directory_ - For access to the cluster for application deployment and management, either client certificates or Azure AD access is suggested. (In Progress)
 
 Note: As the Self-Signed Client Certificate component has not yet been completed, unsecured Service Fabric Clusters have been using for testing so far. 
 
@@ -61,9 +61,8 @@ Step 2 - Install Node.js
 
 Step 3 - Install Client Web Application
 
-
 ## Option 5 - Node API and Node Web App on Azure App Services
-
+Use Azure App Service to host each application on PaaS.
 
 
     
