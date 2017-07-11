@@ -13,21 +13,21 @@ There are several options for supporting the various components for this project
 
 **Data Storage** - CosmosDB was selected as the long term storage for the data collected from the devices via IoT Hub. This database would be accessed by the front-end Web Application for reviewing and interacting with the sensor data. Other options could have included VM running MongoDB, Azure Table storage or SQL Database on Azure. 
 
-**Node API (Recieve Hub Messages)** - This node application performs to action of gathering messages recieved by the IoT Hub and moving them into the CosmosDB database.  Options for supporting this application include:
+**Node API (Recieve Hub Messages)** - This node application performs to action of gathering messages recieved by the IoT Hub and moving them into the CosmosDB database. Options for supporting this application include:
 
-    * Azure Functions
-    * Guest Executable on a Service Fabric Cluster *(Depicted in Diagram)*
-    * API App (Azure App Services)
-    * Container on Service Fabric Cluster
-    * Container on Azure Container Service
-    * Native Application on Azure VM
+    - Azure Functions
+    - Guest Executable on a Service Fabric Cluster *(Depicted in Diagram)*
+    - API App (Azure App Services)
+    - Container on Service Fabric Cluster
+    - Container on Azure Container Service
+    - Native Application on Azure VM
 
-**Node Web App (Front End Display)** - This application provides a front end interface for viewing and interacting with the data collected from the plant sensors.  Options for supporting this application include:
+**Node Web App (Front End Display)** - This application provides a front end interface for viewing and interacting with the data collected from the plant sensors. Options for supporting this application include:
 
-    * Web App (Azure App Services)
-    * Native Application on Azure VM
-    * Guest Executable on Service Fabric Cluster *(Depicted in Diagram)*
-    * Container on Service Fabric Cluster
-    * Container on Azure Container Service
+    - Web App (Azure App Services)
+    - Native Application on Azure VM
+    - Guest Executable on Service Fabric Cluster *(Depicted in Diagram)*
+    - Container on Service Fabric Cluster
+    - Container on Azure Container Service
 
 [Additional details](/InfrastructureOptions.md) regarding Node Application deployment options.
