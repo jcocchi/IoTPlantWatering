@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import DeviceReadingList from './deviceReadingList'
+import DeviceReadingTable from './deviceReadingTable'
+// import TextInputForm from './textInputForm'
+import { Button, Form, FormControl, FormGroup } from 'react-bootstrap'
+
 import search from '../search'
 import '../css/App.css'
 
@@ -8,15 +11,36 @@ class App extends Component {
     super(props)
 
     this.state = {
-      deviceReadings: [],
-      numRecords: 10
+      deviceReadingsRecieved: [],
+      deviceReadingsToPost: [],
+      numRecords: 10,
+      inputPlaceholder: '# of records displayed'
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleTextInput = this.handleTextInput.bind(this)
+  }
+
+  handleSubmit (event) {
+    // this.setState({numRecords: event.target.numRecords.value})
+    this.setState({numRecords: event.target.numRecords.value}, () => {
+      console.log('Should have set the state to new val: ' + this.state.numRecords)
+    })
+
+    // console.log('numrecords from state:' + this.state.numRecords)
+  }
+
+  handleTextInput (event) {
+    // this.setState({numRecords: event.target.numRecords.value})
+    this.setState({numRecords: event.target.value}, () => {
+      console.log('Should have set the state to new val: ' + this.state.numRecords)
+    })
   }
 
   componentDidMount () {
-    search(this.state.numRecords, (response) => {
-      console.log(`Component mounted ${response.length} responses`)
+    console.log('component did mount num records: ' + this.state.numRecords)
 
+    search(this.state.numRecords, (response) => {
       this.setState({deviceReadings: response})
     })
   }
@@ -27,10 +51,23 @@ class App extends Component {
         <div className='App-header'>
           <h2>IoT Plant Watering</h2>
         </div>
-        <p className='App-intro'>
+        <div className='App-intro'>
           <h3>Recent Device Readings</h3>
-          <DeviceReadingList deviceReadings={this.state.deviceReadings} />
-        </p>
+
+          {/* < TextInputForm onClick={this.handleFormClick} placeholder={this.state.inputPlaceholder} / > */}
+          <Form inline onSubmit={this.handleSubmit.bind(this)} >
+            <FormGroup>
+              <FormControl id='numRecords' type='text' placeholder={this.props.placeholder} onChange={this.handleTextInput.bind(this)} />
+            </FormGroup>
+            {' '}
+            <FormGroup>
+              <Button onClick={this.props.onClick} type='submit' bsSize='small' >Submit</Button>
+            </FormGroup>
+          </Form>
+          <br />
+
+          <DeviceReadingTable deviceReadings={this.state.deviceReadingsRecieved} />
+        </div>
       </div>
     )
   }

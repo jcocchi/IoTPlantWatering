@@ -10,6 +10,8 @@ app.set('port', process.env.PORT || 3001)
 
 app.get('/api/deviceReadings', (req, res) => {
   const numRecords = parseInt(req.query.numRecords)
+  console.log('Num Records: ' + numRecords)
+
   if (isNaN(numRecords)) {
     res.sendStatus(400)
   }

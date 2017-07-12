@@ -2,10 +2,12 @@
   background-color: #222;
   text-align: center;
   height: 150px;
-  padding: 20px;
+  padding: 30px;
   color: white;
 }
 
 .App-intro {
   font-size: large;
+  margin-left: 75px;
+  margin-right: 75px;
 }

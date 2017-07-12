@@ -3,8 +3,14 @@ import React, {Component} from 'react'
 class DeviceReading extends Component {
   render () {
     const reading = this.props.reading
+    const index = this.props.index
+
     return (
-      <li>Temperature: {reading.temp} Humidity: {reading.hum}</li>
+      <tr>
+        <td>{index}</td>
+        <td>{reading.temp}</td>
+        <td>{reading.hum}</td>
+      </tr>
     )
   }
 }
