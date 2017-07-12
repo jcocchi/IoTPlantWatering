@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "azure-iot-device": "^1.1.14",
-    "azure-iot-device-mqtt": "^1.1.14"
+    "azure-iot-device-mqtt": "^1.1.14",
+    "dotenv": "^4.0.0"
   }
 }

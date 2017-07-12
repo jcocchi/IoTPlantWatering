@@ -1,3 +1,4 @@
+require('dotenv').config()
 const clientFromConnectionString = require('azure-iot-device-mqtt').clientFromConnectionString
 const Message = require('azure-iot-device').Message
 

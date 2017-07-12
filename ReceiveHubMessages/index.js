@@ -1,23 +1,32 @@
 require('dotenv').config()
-const assert = require('assert')
+const moment = require('moment')
 const EventHubClient = require('azure-event-hubs').Client
-const MongoClient = require('mongodb').MongoClient
+const DocumentDBClient = require('documentdb').DocumentClient
 
 // Set up event hub connection
 const eventHubConnString = process.env.EVENT_HUB_CONN_STRING
 const client = EventHubClient.fromConnectionString(eventHubConnString)
 
-// Set up CosmosDB MongoDB connection
-const mongoConnString = process.env.COSMOS_CONN_STRING
+// Set up CosmosDB DocDB connection
+const docDbClient = new DocumentDBClient(process.env.COSMOS_HOST, {
+  masterKey: process.env.COSMOS_AUTH_KEY
+})
+const databaseUrl = `dbs/${process.env.COSMOS_DATABASE_ID}`
+const collectionUrl = `${databaseUrl}/colls/${process.env.COSMOS_COLLECTION_ID}`
 
-function insertDocument (db, msg, cb) {
-  db.collection(process.env.COLLECTION_ID).insertOne({
+function insertDocument (msg, cb) {
+  var docToCreate = {
+    timestamp: moment().format('MMMM Do YYYY h:mm:ss a'),
     deviceId: msg.deviceId,
     temp: msg.temperature,
     hum: msg.humidity
-  }, function (err, res) {
-    assert.equal(err, null)
-    cb()
+  }
+
+  docDbClient.createDocument(collectionUrl, docToCreate, {}, (err, documentCreated) => {
+    if (err) {
+      cb(err)
+    }
+    cb(null, documentCreated.id)
   })
 }
 
@@ -29,14 +38,13 @@ function printMessage (message) {
   console.log('Message received: ')
   console.log(JSON.stringify(message.body))
 
-  // Write message to CosmosDB
-  MongoClient.connect(mongoConnString, function (err, db) {
-    assert.equal(null, err)
-    insertDocument(db, message.body, function () {
-      console.log('Successfully inserted the message to CosmosDB.')
-      console.log('')
-      db.close()
-    })
+  insertDocument(message, (err, id) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+
+    console.log(`Wrote message to cosmos with id: ${id}`)
   })
 }
 
