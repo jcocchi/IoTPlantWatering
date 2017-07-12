@@ -1,0 +1,13 @@
+FROM plantreg.azurecr.io/plants/windowsnode
+
+RUN mkdir c:\\build\\clientwebapp
+WORKDIR c:\\build\\clientwebapp
+
+COPY . c:\\build\\clientwebapp
+RUN npm install
+
+EXPOSE 3001
+
+CMD [ "npm", "start" ]
+
+
