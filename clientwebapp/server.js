@@ -1,8 +1,11 @@
 require('dotenv').config()
 const express = require('express')
-const MongoClient = require('mongodb').MongoClient
-const MongoConnString = process.env.COSMOS_CONN_STRING
-const CollectionId = process.env.COLLECTION_ID
+const DocumentDBClient = require('documentdb').DocumentClient
+const docDbClient = new DocumentDBClient(process.env.COSMOS_HOST, {
+  masterKey: process.env.COSMOS_AUTH_KEY
+})
+const databaseUrl = `dbs/${process.env.COSMOS_DATABASE_ID}`
+const collectionUrl = `${databaseUrl}/colls/${process.env.COSMOS_COLLECTION_ID}`
 
 const app = express()
 
@@ -16,38 +19,36 @@ app.get('/api/deviceReadings', (req, res) => {
     res.sendStatus(400)
   }
 
-  MongoClient.connect(MongoConnString, (err, db) => {
-    if (err) {
-      res.sendStatus(500)
-    }
+  var querySpec = {
+    query: 'SELECT TOP @numRecords * FROM root r',
+    parameters: [{
+      name: '@numRecords',
+      value: numRecords
+    }]
+  }
 
-    getCursor(db, numRecords)
-      .then(getReadings)
-      .then(res.send.bind(res))
+  docDbClient.queryDocuments(collectionUrl, querySpec).toArray(function (err, results) {
+    if (err) {
+      console.error(err)
+      res.sendStatus(500)
+    } else {
+      var readings = []
+
+      results.forEach(r => {
+        var reading = {
+          timestamp: r.timestamp,
+          deviceId: r.deviceId,
+          temp: r.temp,
+          hum: r.hum
+        }
+        readings.push(reading)
+      })
+
+      res.send(readings)
+    }
   })
 })
 
 app.listen(app.get('port'), () => {
   console.log(`server listening on ${process.env.URL}:${app.get('port')}`)
 })
-
-function getCursor (db, numRecords) {
-  let getCursorPromise = new Promise((resolve, reject) => {
-    resolve(db.collection(CollectionId).find().limit(numRecords))
-  })
-
-  return getCursorPromise
-}
-
-function getReadings (cursor) {
-  let getReadingsPromise = new Promise((resolve, reject) => {
-    let readings = []
-    cursor.forEach(r => {
-      readings.push(r)
-    }, () => {
-      resolve(readings)
-    })
-  })
-
-  return getReadingsPromise
-}

@@ -11,8 +11,7 @@ class App extends Component {
     super(props)
 
     this.state = {
-      deviceReadingsRecieved: [],
-      deviceReadingsToPost: [],
+      deviceReadings: [],
       numRecords: 10,
       inputPlaceholder: '# of records displayed'
     }
@@ -66,7 +65,7 @@ class App extends Component {
           </Form>
           <br />
 
-          <DeviceReadingTable deviceReadings={this.state.deviceReadingsRecieved} />
+          <DeviceReadingTable deviceReadings={this.state.deviceReadings} />
         </div>
       </div>
     )

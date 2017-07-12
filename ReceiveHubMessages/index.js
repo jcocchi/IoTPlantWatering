@@ -38,7 +38,7 @@ function printMessage (message) {
   console.log('Message received: ')
   console.log(JSON.stringify(message.body))
 
-  insertDocument(message, (err, id) => {
+  insertDocument(message.body, (err, id) => {
     if (err) {
       console.error(err)
       return
