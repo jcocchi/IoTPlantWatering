@@ -39,7 +39,7 @@ References: [How to Connect to a Running Windows Container](https://github.com/a
 In order to filter out errors related to service or application manifest configuration, we considered deploying the containers directly to Azure Container Service.
 
 1. **Create a Container Service on Azure** - Azure supports three orchestrator options for containers on Azure (Docker Swarm, DC/OS and Kubernetes.) Only Kubernetes supports Windows Containers at this time. [Walkthrough Here.](https://docs.microsoft.com/en-us/azure/container-service/container-service-kubernetes-windows-walkthrough)
-1. **Deploy Container** - using Kubectl command line
+1. **Deploy Container** - using Kubectl command line.
 
 Roadbocks/ToDos: Containers were deployed to the service, however reported failure shortly after deployment. This was tested with both the container with the application installed and the container with just the Node.js installed.  Not sure if the script used to install Node.js was correct as it was dated, so may need to look at alternative ways to create that container or confirm that Node is installed correctly.
 
