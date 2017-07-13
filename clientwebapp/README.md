@@ -14,11 +14,10 @@ cd client
 npm install
 ```
 
-Becase we are using [concurrently](https://www.npmjs.com/package/concurrently) and [create-react-app](https://www.npmjs.com/package/create-react-app) we need to install them both as global dependencies on your machine.
+Because we are using [concurrently](https://www.npmjs.com/package/concurrently) to run our server and client process simultaneously, we need to install it as global dependencies on your machine.
 
 ```terminal
 npm install -g concurrently
-npm install -g create-react-app 
 ```
 
 ## Fill in Environment Variables
