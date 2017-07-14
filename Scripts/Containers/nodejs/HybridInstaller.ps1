@@ -19,7 +19,7 @@ $containerScript = {
         $LocalSourceRoot
     )
     $tempdir = Join-Path -Path $env:temp -ChildPath "$(Get-Date -format 'yyyyMMddhhmmss')"
-    $sourceuri = "https://nodejs.org/dist/v6.11.0/node-v6.11.0-x64.msi"
+    $sourceuri = "https://nodejs.org/dist/v6.11.1/node-v6.11.1-x64.msi"
     $installer = Split-Path $sourceuri -Leaf
     $installerpath = Join-Path -Path $tempdir -ChildPath $installer
 	$log = Join-Path -Path $env:SystemDrive -ChildPath "log\$($installer).log"

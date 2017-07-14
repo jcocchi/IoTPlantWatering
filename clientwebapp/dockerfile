@@ -1,17 +1,17 @@
-FROM plantreg.azurecr.io/plants/windowsnode
+FROM plantreg.azurecr.io/plants/windowsnodejs
 
 RUN mkdir c:\\build\\clientwebapp
 WORKDIR c:\\build\\clientwebapp
 
-RUN npm install -g concurrently
-RUN npm install -g create-react-app
-
 COPY . c:\\build\\clientwebapp
+
+RUN npm install -g concurrently
 RUN npm install
 
 WORKDIR c:\\build\\clientwebapp\\client
 RUN npm install
 
+WORKDIR C:\\build\\clientwebapp
 EXPOSE 3001
 
 CMD [ "npm", "start" ]
