@@ -40,4 +40,4 @@ send status: MessageEnqueued
 ...
 ```
 
-> Note: This project only sends messages to the hub. To read and process these messages follow the instructions on the Receive Hub Messages README.
+> Note: This project only sends messages to the hub. To read and process these messages follow the instructions on the [Receive Hub Messages README](https://github.com/jcocchi/IoTPlantWatering/tree/master/ReceiveHubMessages).

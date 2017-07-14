@@ -55,4 +55,4 @@ Created partition receiver: 0
 
 If you don't have a real device connected to the hub and sending messages, you can run the simulated device project in this repository to test the system. 
 
-Similar to this project, the simulated device has npm packages to install and one environment variale to set for the hub connection. Visit the README for that project for more information on how to run it.
+Similar to this project, the simulated device has npm packages to install and one environment variale to set for the hub connection. Visit the [README](https://github.com/jcocchi/IoTPlantWatering/tree/master/SimulatedDevice) for that project for more information on how to run it.
