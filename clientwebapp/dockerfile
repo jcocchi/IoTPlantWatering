@@ -1,7 +1,7 @@
-FROM plantreg.azurecr.io/plants/node-con-cra
+FROM plantreg.azurecr.io/plants/windowsnodejs
 
-# RUN npm install -g concurrently
-# RUN npm install -g create-react-app
+RUN npm install -g concurrently
+RUN npm install -g create-react-app
 
 RUN mkdir c:\\build\\clientwebapp
 WORKDIR c:\\build\\clientwebapp
