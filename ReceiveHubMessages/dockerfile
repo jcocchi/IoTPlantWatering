@@ -1,0 +1,14 @@
+FROM plantreg.azurecr.io/plants/windowsnodejs
+
+# RUN npm install -g concurrently
+# RUN npm install -g create-react-app
+
+RUN mkdir c:\\build\\ReceiveHubMessages
+WORKDIR c:\\build\\ReceiveHubMessages
+
+COPY . c:\\build\\ReceiveHubMessages
+RUN npm install
+
+CMD [ "node", "index.js" ]
+
+
