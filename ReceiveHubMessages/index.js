@@ -31,12 +31,12 @@ function insertDocument (msg, cb) {
 }
 
 function printError (err) {
-  console.log(err.message)
+  //console.log(err.message)
 }
 
 function printMessage (message) {
-  console.log('Message received: ')
-  console.log(JSON.stringify(message.body))
+  //console.log('Message received: ')
+  //console.log(JSON.stringify(message.body))
 
   insertDocument(message.body, (err, id) => {
     if (err) {
@@ -44,7 +44,7 @@ function printMessage (message) {
       return
     }
 
-    console.log(`Wrote message to cosmos with id: ${id}`)
+    //console.log(`Wrote message to cosmos with id: ${id}`)
   })
 }
 
@@ -53,7 +53,7 @@ client.open()
     .then(function (partitionIds) {
       return partitionIds.map(function (partitionId) {
         return client.createReceiver('$Default', partitionId, {'startAfterTime': Date.now()}).then(function (receiver) {
-          console.log('Created partition receiver: ' + partitionId)
+          //console.log('Created partition receiver: ' + partitionId)
           receiver.on('errorReceived', printError)
           receiver.on('message', printMessage)
         })
