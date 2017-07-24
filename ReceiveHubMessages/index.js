@@ -16,7 +16,7 @@ const collectionUrl = `${databaseUrl}/colls/${process.env.COSMOS_COLLECTION_ID}`
 
 function insertDocument (msg, cb) {
   var docToCreate = {
-    timestamp: moment().format('MMMM Do YYYY h:mm:ss a'),
+    timestamp: moment().format('MMMM D YYYY h:mm:ss a'),
     deviceId: msg.deviceId,
     temp: msg.temperature,
     hum: msg.humidity
@@ -31,20 +31,20 @@ function insertDocument (msg, cb) {
 }
 
 function printError (err) {
-  //console.log(err.message)
+  // console.log(err.message)
 }
 
 function printMessage (message) {
-  //console.log('Message received: ')
-  //console.log(JSON.stringify(message.body))
+  // console.log('Message received: ')
+  // console.log(JSON.stringify(message.body))
 
   insertDocument(message.body, (err, id) => {
     if (err) {
-      console.error(err)
+      printError(err)
       return
     }
 
-    //console.log(`Wrote message to cosmos with id: ${id}`)
+    // console.log(`Wrote message to cosmos with id: ${id}`)
   })
 }
 
@@ -52,8 +52,8 @@ client.open()
     .then(client.getPartitionIds.bind(client))
     .then(function (partitionIds) {
       return partitionIds.map(function (partitionId) {
-        return client.createReceiver('$Default', partitionId, {'startAfterTime': Date.now()}).then(function (receiver) {
-          //console.log('Created partition receiver: ' + partitionId)
+        return client.createReceiver('$Default', partitionId).then(function (receiver) {
+          // console.log('Created partition receiver: ' + partitionId)
           receiver.on('errorReceived', printError)
           receiver.on('message', printMessage)
         })
