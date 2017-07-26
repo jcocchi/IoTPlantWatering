@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import DeviceReadingTable from './deviceReadingTable'
-// import TextInputForm from './textInputForm'
-import { Button, Form, FormControl, FormGroup } from 'react-bootstrap'
-
-import search from '../search'
 import '../css/App.css'
+import Report from './report'
+import search from '../search'
+import React, { Component } from 'react'
+// import TextInputForm from './textInputForm'
+// import DeviceReadingTable from './deviceReadingTable'
+// import { Button, Form, FormControl, FormGroup } from 'react-bootstrap'
 
 class App extends Component {
   constructor (props) {
@@ -53,7 +53,9 @@ class App extends Component {
         <div className='App-intro'>
           <h3>Recent Device Readings</h3>
 
-          {/* < TextInputForm onClick={this.handleFormClick} placeholder={this.state.inputPlaceholder} / > */}
+          <Report />
+
+          {/* <TextInputForm onClick={this.handleFormClick} placeholder={this.state.inputPlaceholder} />
           <Form inline onSubmit={this.handleSubmit.bind(this)} >
             <FormGroup>
               <FormControl id='numRecords' type='text' placeholder={this.props.placeholder} onChange={this.handleTextInput.bind(this)} />
@@ -65,7 +67,7 @@ class App extends Component {
           </Form>
           <br />
 
-          <DeviceReadingTable deviceReadings={this.state.deviceReadings} />
+          <DeviceReadingTable deviceReadings={this.state.deviceReadings} /> */}
         </div>
       </div>
     )
