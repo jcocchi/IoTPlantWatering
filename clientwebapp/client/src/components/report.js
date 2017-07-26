@@ -1,3 +1,4 @@
+import '../css/report.css'
 import * as pbi from 'powerbi-client'
 import React, {Component} from 'react'
 require('dotenv').config()
