@@ -23,7 +23,7 @@ function insertDocument (msg, cb) {
   }
 
   docDbClient.createDocument(collectionUrl, docToCreate, {}, (err, documentCreated) => {
-    if (err) {
+    if (err || !documentCreated) {
       cb(err)
     }
     cb(null, documentCreated.id)
