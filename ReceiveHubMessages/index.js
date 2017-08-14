@@ -18,8 +18,8 @@ function insertDocument (msg, cb) {
   var docToCreate = {
     timestamp: moment().format('MMMM D YYYY h:mm:ss a'),
     deviceId: msg.deviceId,
-    temp: msg.temperature,
-    hum: msg.humidity
+    light: msg.light,
+    hum: msg.hum
   }
 
   docDbClient.createDocument(collectionUrl, docToCreate, {}, (err, documentCreated) => {

@@ -19,11 +19,10 @@ const connectCallback = function (err) {
 
     // Create a message and send it to the IoT Hub every second
     setInterval(function () {
-      const temperature = 20 + (Math.random() * 15)
+      const light = 20 + (Math.random() * 15)
       const humidity = 60 + (Math.random() * 20)
-      const data = JSON.stringify({ deviceId: 'myFirstNodeDevice', temperature: temperature, humidity: humidity })
+      const data = JSON.stringify({ deviceId: 'myFirstNodeDevice', light: light, hum: humidity })
       const message = new Message(data)
-      message.properties.add('temperatureAlert', (temperature > 30) ? 'true' : 'false')
       console.log('Sending message: ' + message.getData())
       client.sendEvent(message, printResultFor('send'))
     }, 2000)
