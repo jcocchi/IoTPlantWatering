@@ -8,10 +8,14 @@ const powerbi = new pbi.service.Service(pbi.factories.hpmFactory, pbi.factories.
 class Report extends Component {
   constructor (props) {
     super(props)
+
     this.component = null
+    console.log('In report constructor')
   }
 
-  componentDidUpdate () {
+  componentDidMount () {
+    console.log('In component will mount')
+
     const token = this.generateToken()
 
     const options = {
@@ -33,6 +37,8 @@ class Report extends Component {
   }
 
   generateToken () {
+    console.log('In generate Token')
+
     var token = pbiAPI.PowerBIToken.createReportEmbedToken(process.env.REACT_APP_PBI_WRKSPACE_COLL_NAME,
                                                             process.env.REACT_APP_PBI_WRKSPACE_ID,
                                                             process.env.REACT_APP_PBI_REPORT_ID)
@@ -40,7 +46,10 @@ class Report extends Component {
   }
 
   validateConfig (options) {
+    console.log('In validate config')
+
     const errors = pbi.models.validateReportLoad(options)
+
     return (errors === undefined)
   }
 
