@@ -98,7 +98,7 @@
     },
     "whichSubnet": {
       "type": "string",
-      "defaultValue": "Subnet1"
+      "defaultValue": "garden"
     }
    },
       
@@ -310,7 +310,7 @@
       "properties": {
            "publisher": "Microsoft.Powershell",
            "type": "DSC",
-           "typeHandlerVersion": "2.19",
+           "typeHandlerVersion": "2.26",
            "autoUpgradeMinorVersion": false,
            "settings": {
                  "ModulesUrl": "https://raw.githubusercontent.com/jcocchi/IoTPlantWatering/master/Scripts/VM/ClientWebServerDSConfig.ps1.zip",
