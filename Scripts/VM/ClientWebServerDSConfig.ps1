@@ -7,6 +7,13 @@ Configuration ClientWebServer
       {
         InstallDir = "C:\Program Files (x86)\choco"
       }
+
+      cChocoPackageInstaller installGit
+      {
+         Ensure = 'Present'
+         Name = "git"
+         DependsOn = "[cChocoInstaller]installChoco"
+      }
       
       cChocoPackageInstaller installNodejs-lts
       {
