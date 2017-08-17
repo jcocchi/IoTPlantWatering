@@ -9,11 +9,7 @@ WORKDIR c:\\build\\clientwebapp
 COPY . c:\\build\\clientwebapp
 RUN npm install
 
-WORKDIR c:\\build\\clientwebapp\\client
-RUN npm install
-
-WORKDIR C:\\build\\clientwebapp
-EXPOSE 3001
+EXPOSE 3000
 
 CMD [ "npm", "start" ]
 

@@ -27,7 +27,7 @@ Configuration ClientWebServer
             IsEnabled = $False
             UserRole  = "Administrators"
         }
-        xIEEsc EnableIEEscUser
+      xIEEsc EnableIEEscUser
         {
             IsEnabled = $False
             UserRole  = "Users"
