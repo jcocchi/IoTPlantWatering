@@ -7,13 +7,6 @@ Configuration ClientWebServer
       {
         InstallDir = "C:\Program Files (x86)\choco"
       }
-
-      cChocoPackageInstaller installGit
-      {
-         Ensure = 'Present'
-         Name = "git"
-         DependsOn = "[cChocoInstaller]installChoco"
-      }
       
       cChocoPackageInstaller installNodejs-lts
       {
@@ -44,10 +37,10 @@ Configuration ClientWebServer
       {
         Name                  = 'ClientWebAppFirewallRule'
         DisplayName           = 'Firewall Rule for ClientWebApp'
-        Group                 = 'NotePad Firewall Rule Group'
+        Group                 = 'IoTPlantApps'
         Ensure                = 'Present'
         Enabled               = 'True'
-        Profile               = ('Domain', 'Private')
+        Profile               = ('All')
         Direction             = 'InBound'
         RemotePort            = ('3000')
         LocalPort             = ('3000')
