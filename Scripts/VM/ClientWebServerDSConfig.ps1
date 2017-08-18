@@ -1,6 +1,6 @@
 Configuration ClientWebServer            
 {            
-    Import-DscResource -ModuleName PSDesiredStateConfiguration, cChoco, xSystemSecurity, xDSCFirewall         
+    Import-DscResource -ModuleName PSDesiredStateConfiguration, cChoco, xSystemSecurity, xNetworking         
     Node localhost            
     {       
       cChocoInstaller installChoco
@@ -40,23 +40,21 @@ Configuration ClientWebServer
             UserRole  = "Users"
         }
 
-      xDSCFirewall Firewall
-        {
-            Name                  = "ClientWebApp"
-            DisplayName           = "Firewall Rule for ClientWebApp"
-            DisplayGroup          = "PlantApps"
-            Ensure                = "Present"
-            Access                = "Allow"
-            State                 = "Enabled"
-            Profile = {
-            "Domain",
-            "Public"
-         };
-            Direction             = "InBound"
-            RemotePort            = ("3000")
-            LocalPort             = ("3000")         
-            Protocol              = "TCP"
-         }
+      xFirewall Firewall
+      {
+        Name                  = 'ClientWebAppFirewallRule'
+        DisplayName           = 'Firewall Rule for ClientWebApp'
+        Group                 = 'NotePad Firewall Rule Group'
+        Ensure                = 'Present'
+        Enabled               = 'True'
+        Profile               = ('Domain', 'Private')
+        Direction             = 'InBound'
+        RemotePort            = ('3000')
+        LocalPort             = ('3000')
+        Protocol              = 'TCP'
+        Description           = 'Firewall Rule for ClientWebApp'
+        
+    }
 
     }
 }
