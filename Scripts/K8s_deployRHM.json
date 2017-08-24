@@ -1,0 +1,26 @@
+{
+ "apiVersion": "v1",
+ "kind": "Pod",
+ "metadata": {
+   "name": "receivehubmessages",
+   "labels": {
+     "name": "receivehubmessages"
+   }
+ },
+ "spec": {
+   "containers": [
+     {
+       "name": "receivehubmessages",
+       "image": "plantreg.azurecr.io/plants/rhmv3",
+       "ports": [
+         {
+         "containerPort": 443
+         }
+       ]
+     }
+   ],
+   "nodeSelector": {
+    "beta.kubernetes.io/os": "windows"
+    }
+  }
+}
