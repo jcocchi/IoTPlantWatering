@@ -23,37 +23,32 @@ function insertDocument (msg, cb) {
   }
 
   docDbClient.createDocument(collectionUrl, docToCreate, {}, (err, documentCreated) => {
-    if (err || !documentCreated) {
+    if (err || documentCreated === undefined) {
       cb(err)
+      return
     }
     cb(null, documentCreated.id)
   })
 }
 
 function printError (err) {
-  // console.log(err.message)
+  console.log(`An error occured: ${err.message}`)
 }
 
 function printMessage (message) {
-  // console.log('Message received: ')
-  // console.log(JSON.stringify(message.body))
-
   insertDocument(message.body, (err, id) => {
     if (err) {
       printError(err)
       return
     }
-
-    // console.log(`Wrote message to cosmos with id: ${id}`)
   })
 }
 
 client.open()
     .then(client.getPartitionIds.bind(client))
-    .then(function (partitionIds) {
-      return partitionIds.map(function (partitionId) {
-        return client.createReceiver('$Default', partitionId).then(function (receiver) {
-          // console.log('Created partition receiver: ' + partitionId)
+    .then((partitionIds) => {
+      return partitionIds.map((partitionId) => {
+        return client.createReceiver('$Default', partitionId, { startAfterTime: Date.now() }).then((receiver) => {
           receiver.on('errorReceived', printError)
           receiver.on('message', printMessage)
         })
