@@ -49,10 +49,10 @@ References: [Running Windows Containers on Azure Service Fabric](https://loekd.w
 
 Building a VM to support this application provides us the greatest opportunity to troubleshoot the redeployment of this application, however it is not the most cost effective solution.
 
-1. Build Windows Server 2016 as an Azure VM
-1. Install Node.js - Installed using the downloaded MSI installer.
-1. Install Client Web Application
-1. Install Node API Application
+1. Build Windows Server 2016 as an Azure VM - this is most effectively done using an ARM template combined with a DSC configuration template to configure firewall port openings and install additional software.
+1. Install Node.js - Installed using DSC and Chocolatey
+1. Install Client Web Application (not automated)
+1. Install Node API Application (not automated)
 
 ## Option 5 - Node API and Node Web App on Azure App Services ##
 
