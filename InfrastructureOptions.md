@@ -10,11 +10,11 @@ When deploying to a Service Fabric Cluster, the recommended installation of the 
 Note: As the Self-Signed Client Certificate component has not yet been completed, unsecured Service Fabric Clusters have been using for testing so far.
 
 ## Service Fabric Deployment Templates ##
-For the secure cluster deployment, we used ARM templates that can be deployed via Azure CLI or PowerShell. Creating unsecure clusters can be done quickly using the Azure Portal, so we do not have an ARM template created for that. 
+For the secure cluster deployment, we used ARM templates that can be deployed via Azure CLI or PowerShell. Creating unsecure clusters can be done quickly using the Azure Portal, so we do not have an ARM template created for that.
 
 ## Option 1 - Node API and Node Web App as Guest Executables on Service Fabric ##
 
-1. **Create Application and Service Manifest files** - This can be done manually or via Visual Studio with the Azure SDK installed. As Node.js isn't included on the cluster nodes by default, it needs to be included in the package along with the application. _In progress_
+1. **Create Application and Service Manifest files** - This can be done manually or via Visual Studio with the Azure SDK installed. As Node.js isn't included on the cluster nodes by default, it needs to be included in the package along with the application. (In progress)
 1. **Connect to the Cluster** - For an unsecure cluster, this is easily accomplished via PowerShell from a subscription holder with access to the cluster deployment. For a secure cluster, the access requires a registered certificate or the cluster needs to be registered as an Azure AD application (not yet completed)
 1. **Upload and Register Application with Fabric Service** - this copies the application to the fabric storage area for applcation and registers it so it's deployable, via PowerShell or Azure CLI. PowerShell code available.
 1. **Deploy Application Service Instance on Desired Number of Nodes** - This can be completed via PowerShell or Azure CLI.  PowerShell code available.
@@ -24,7 +24,7 @@ Roadbumps: Including Node.js binaries as part of the application package has bee
 References: [Deploy Multiple Application to Service Fabric] (https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-deploy-multiple-apps)
 
 ## Option 2 - Node API and Node Web App as Containers on Service Fabric Cluster ##
-This opinion potential eliminates the need to include the Node.js and related dependancies within the application package. Instead the Application and Service manifest files would deploy a Guest Container with the application already installed.
+This opinion potential eliminates the need to include the Node.js and related dependancies within the application package. Instead the Application and Service manifest files would deploy a Guest Container with the application already installed.  This would use the containers created in "Option 3" (below).
 
 1. **Create a Windows Container with Node.js installed** - While there is plenty of documentation on how to do this with a Linux container, doing so with Windows container is more challenging due to the recommended installation process for Node.js is the MSI file. A PowerShell script was located that does a hybrid, silent installation of Node.js.  I updated the script to install the lastest version of Node.js. (Appeared successful)
 1. Create a docker file to install the Client Web Application.
