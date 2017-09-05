@@ -1,0 +1,26 @@
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "name": "clientwebapp",
+      "labels": {
+        "name": "clientwebapp"
+      }
+    },
+    "spec": {
+      "containers": [
+        {
+          "name": "receivehubmessages",
+          "image": "plantreg.azurecr.io/plants/clientwebapp",
+          "ports": [
+            {
+            "containerPort": 3000
+            }
+          ]
+        }
+      ],
+      "nodeSelector": {
+       "beta.kubernetes.io/os": "windows"
+       }
+     }
+   }
