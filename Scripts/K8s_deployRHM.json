@@ -11,7 +11,7 @@
    "containers": [
      {
        "name": "receivehubmessages",
-       "image": "plantreg.azurecr.io/plants/rhm:envtest",
+       "image": "plantreg.azurecr.io/plants/rhm:envtest2",
        "ports": [
          {
          "containerPort": 443
