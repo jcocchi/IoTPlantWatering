@@ -4,7 +4,7 @@ RUN mkdir c:\\build\\ReceiveHubMessages
 WORKDIR c:\\build\\ReceiveHubMessages
 
 COPY . c:\\build\\ReceiveHubMessages
-RUN npm install
+RUN npm install 
 
 CMD [ "node", "index.js" ]
 
