@@ -4,13 +4,13 @@ RUN npm install -g concurrently
 RUN npm install -g create-react-app
 
 RUN mkdir c:\\build\\clientwebapp
-WORKDIR c:\\build\\clientwebapp
-
 COPY . c:\\build\\clientwebapp
+
+WORKDIR c:\\build\\clientwebapp
 RUN npm install
 
 EXPOSE 3000
-
 CMD [ "npm", "start" ]
+
 
 

@@ -10,7 +10,7 @@
     "spec": {
       "containers": [
         {
-          "name": "receivehubmessages",
+          "name": "clientwebapp",
           "image": "plantreg.azurecr.io/plants/clientwebapp",
           "ports": [
             {
