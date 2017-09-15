@@ -6,8 +6,7 @@ const DocumentDBClient = require('documentdb').DocumentClient
 console.log('IM STARTING UP')
 
 // Set up event hub connection
-const eventHubConnString = process.env.EVENT_HUB_CONN_STRING
-const client = EventHubClient.fromConnectionString(eventHubConnString)
+const client = EventHubClient.fromConnectionString(process.env.EVENT_HUB_CONN_STRING, process.env.EVENT_HUB_NAME)
 
 console.log('I CREATED THE EVENT HUB: ' + client)
 
@@ -62,7 +61,7 @@ client.open()
       return partitionIds.map((partitionId) => {
         console.log('ON PARTITION: ' + partitionId)
         return client.createReceiver('$Default', partitionId, { startAfterTime: Date.now() }).then((receiver) => {
-          console.log('CREATEDA RECEIVER FOR PARTITION: ' + partitionId)
+          console.log('CREATED A RECEIVER FOR PARTITION: ' + partitionId)
           receiver.on('errorReceived', printError)
           receiver.on('message', printMessage)
         })
