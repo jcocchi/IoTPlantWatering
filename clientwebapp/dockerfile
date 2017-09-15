@@ -10,7 +10,7 @@ WORKDIR c:\\build\\clientwebapp
 RUN npm install
 
 EXPOSE 3000
-CMD [ "npm", "start" ]
+CMD [ "npm.cmd", "start"]
 
 
 
