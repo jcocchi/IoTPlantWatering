@@ -18,12 +18,12 @@ The `.env.sample` file lists all of the necessary project environment variables.
 ![Power BI Workspace](../images/PowerBIWrkspcColl.jpg)
 
  - REACT_APP_PBI_WRKSPACE_ID= This is the id of the workspace that your report is a part of.
+
  - REACT_APP_PBI_WRKSPACE_COLL_NAME= Thi is the name of your workspace collection, not the name of your specific workspace in that collection. `plantdata` from this example.
 
 ![Power BI Workspace Key](../images/PowerBIKey.jpg)
 
  - REACT_APP_PBI_WRKSPACE_KEY= This is the access key for your workspace collection. You can use either Key 1 or Key 2.
-
 
  - REACT_APP_PBI_REPORT_ID= This is the ID of the report you uploaded to your workspace shown above in Azure. You can't get this ID from the portal. If you don't know it, use the [Power BI Command Line Tool](https://github.com/Microsoft/PowerBI-Cli) `get-reports` command.
 
